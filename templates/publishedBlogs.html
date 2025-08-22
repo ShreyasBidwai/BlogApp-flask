@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Published Blog</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/publishedBlogs.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='img/pige-static.svg')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Kaushan+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="body-container">
+        <nav id="navbar">
+            <button id="navbar-toggle">&#9776;</button>
+            <div id="nav-header">
+                <img src="{{url_for('static', filename='img/pige-static.svg')}}" alt="logo">
+                <div class="logo">Blogger</div>
+            </div>
+            {% for user in users %}
+            <div id="hello-user">Hello {{ user.name }}</div>
+            {% endfor %}
+            <ul>
+                <li><a href="{{url_for('home')}}">Home</a></li>
+                <li id="Create"><a href="{{url_for('createBlog')}}">Create Blog</a></li>
+                <li><a href="{{url_for('readBlogs')}}">Read Blogs</a></li>
+                <li id="Published"><a href="{{url_for('publishedBlogs')}}">Published Blogs</a></li>
+                <li>
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+
+
+        <!-- <div id="container-i">
+            {% for blog in blogs %}
+            <div class="blog-card">
+                
+                <h3 class="blog-title">{{ blog.title }}</h3>
+                <p class="blog-author">Author: {{ blog.author.name }}</p>
+                <p class="blog-category">Category: {{ blog.category }}</p>
+
+                <p class="blog-snippet">{{ blog.content[:200] }}{% if blog.content|length > 200 %}...{% endif %}</p>
+
+                <a href="{{ url_for('read_single_blog', blog_id=blog.id) }}" class="read-more">Read more →</a>
+            </div>
+            {% endfor %}
+    </div> -->
+
+        <div id="container-i">
+            {% for blog in blogs %}
+            <a href="{{ url_for('read_single_blog', blog_id=blog.id) }}" class="read-more">
+
+                <div class="blog-card">
+                    <img src="../{{blog.img}}" alt="blog image">
+                    <div class="blog-card-content">
+                        <h3 class="blog-title">{{ blog.title }}</h3>
+                        <p class="blog-author">Author: {{ blog.author.name }}</p>
+                        <p class="blog-category">Category: {{ blog.category }}</p>
+
+                    </div>
+                </div>
+
+            </a>
+            {% endfor %}
+        </div>
+
+
+    </div>
+    </div>
+
+    <script src="{{url_for('static',filename='js/publishedBlogs.js')}}"></script>
+</body>
+
+</html>

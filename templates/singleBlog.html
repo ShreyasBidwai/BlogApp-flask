@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>{{ blog.title | e }}</title>
+
+  <!-- Link to external stylesheet in static/css -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/read_singleBlog.css') }}">
+</head>
+<body>
+  <main class="page-wrapper">
+    <article class="blog-card" aria-labelledby="blog-title">
+      {% if blog.img %}
+      <figure class="hero">
+        <img
+          src="../{{blog.img}}"
+          alt="{{ blog.title | e }}"
+          loading="lazy"
+        />
+      </figure>
+      {% endif %}
+
+      <div class="card-body">
+        <header class="card-header">
+          <h1 id="blog-title" class="title">{{ blog.title | e }}</h1>
+          <div class="meta">
+            <span class="author">By <strong>{{ blog.author.name | e }}</strong></span>
+            <span class="dot" aria-hidden="true">•</span>
+            <time class="category" datetime="{{ blog.id }}">{{ blog.category | e }}</time>
+          </div>
+        </header>
+
+        <section class="content" itemprop="articleBody">
+          {{ blog.content | safe }}
+        </section>
+
+        <footer class="card-footer">
+          <a class="btn-back" href="{{ url_for('readBlogs') }}">← Back to all posts</a>
+          {% if session.get('user_id') == blog.author_id %}
+            <a class="btn-edit" href="{{ url_for('createBlog') }}">Edit</a>
+          {% endif %}
+        </footer>
+      </div>
+    </article>
+  </main>
+</body>
+</html>

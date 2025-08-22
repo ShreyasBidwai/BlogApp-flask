@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogger</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{{url_for('static', filename='img/pige-static.svg')}}" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Kaushan+Script&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="homePage" class="page active">
+        <div class="logo">Blogger</div>
+        <div id="container">
+            <img src="{{url_for('static', filename='img/pige-static.svg')}}" alt="logo" id="logo-img">
+            <div id="body-text">Discover your new ambition</div>
+            <div id="body-subtext">Unleash your creativity and share your thoughts with the world.</div>
+            <div id="buttons-div">
+                <a href="{{url_for('readBlogs')}}" class="btn-a" id="button-1"><div>Read Blogs</div></a>
+                <div id="button-2" onclick="authPage()">Post Blogs</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="authPage" class="page">
+        <div class="logo" id="afterLogo">Blogger</div>
+        <button id="home-btn" onclick="homePage()"><img src="{{url_for('static', filename='img/home.png')}}"
+                alt="home icon"></button>
+        <div id="authContainer">
+            <img src="{{url_for('static', filename='img/pige-static.svg')}}" alt="logo" id="logo-img">
+            <div id="text">Do you already have an account?</div>
+            <div id="btn">
+                <button id="loginButton" class="authButton"><a href="{{url_for('login')}}" class="btn-a">Yes, Log me in</a></button>
+                <button id="signupButton" class="authButton"><a href="{{url_for('register')}}" class="btn-a">No, Create One</a></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+
+</html>
